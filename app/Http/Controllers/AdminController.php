@@ -122,4 +122,29 @@ class AdminController extends Controller
         $find_item->update(['discount'=> + $request->discount ]);
         return back()->with('success','Item Updated Discount Successfully!');
     }
+
+    public function history_item($id)
+    {
+        $item_history = Order::where('item_id', $id)->where('status_id', '!=',1)->get();
+        return view('admin.item_history',compact('item_history'));
+    }
+
+    public function orders()
+    {
+        $orders = Order::where('status_id','!=',1)->with('item')->orderBy('id','desc')->get();
+        return view('admin.order',compact('orders'));
+    }
+
+    public function orders_approve_ship($id)
+    {
+        $find_order = Order::find($id);
+
+        if(!$find_order)
+        {
+            return back()->with('error','Order Not Found');
+        }
+
+        $find_order->update(['status_id'=> 3]);
+        return back()->with('success','Order Approve and Shipped ');
+    }
 }

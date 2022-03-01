@@ -35,6 +35,12 @@
                     <span>Items</span></a>
             </li>
 
+             <li class="nav-item active">
+                <a class="nav-link " href="{{route('admin_orders')}}">
+                    <i class="fas fa-fw fa-regular fa-coins"></i>
+                    <span>Orders</span></a>
+            </li>
+
            
 
             <li class="nav-item active">

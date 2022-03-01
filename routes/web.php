@@ -16,11 +16,14 @@ Route::group(['prefix'=> 'admin'], function(){
     Route::post('/create-item','AdminController@create_item_check')->name('admin_create_item_check');
     Route::get('/edit-item/{id}','AdminController@edit_item')->name('admin_edit_item');
     Route::post('/update-item/{id}','AdminController@update_item')->name('admin_update_item');
+    Route::get('/edit-history/{id}','AdminController@history_item')->name('admin_history_item');
     Route::get('/users','AdminController@users')->name('admin_users');
     Route::get('/message','AdminController@message')->name('admin_message');
     Route::get('/message/{id}','AdminController@message_get')->name('message_get');
     Route::post('/message','AdminController@message_check')->name('admin_message_check');
     Route::get('/logout','AdminController@logout')->name('admin_logout');
+    Route::get('/orders','AdminController@orders')->name('admin_orders');
+    Route::get('/orders-approve-ship/{id}','AdminController@orders_approve_ship')->name('admin_orders_approve_ship');
 
     //AJAX ITEM
     Route::post('/update-item-stock','AdminController@update_item_stock')->name('admin_update_item_stock');
@@ -42,5 +45,7 @@ Route::group(['prefix'=> 'user'], function(){
     //cart
     Route::get('/add-cart/{id}','UserController@add_cart')->name('add_cart');   
     Route::get('/cancel-cart/{id}','UserController@cancel_cart')->name('cancel_cart');  
-    Route::get('/checkout-cart/{id}','UserController@checkout_cart')->name('checkout_cart');   
+    Route::get('/checkout-cart/{id}','UserController@checkout_cart')->name('checkout_cart');  
+    Route::get('/received-item/{id}','UserController@received_item')->name('received_item'); 
 });
+

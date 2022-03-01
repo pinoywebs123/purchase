@@ -94,4 +94,16 @@ class UserController extends Controller
         $find_check_order->update(['status_id' => 2] );
         return back()->with('success','Order Check Out Successfully');
     }
+
+    public function received_item($id)
+    {
+        $find_check_order = Order::where('id',$id)->where('user_id', Auth::id())->first();
+        if(!$find_check_order)
+        {
+           return back()->with('error','Do not touch someone orders'); 
+        }
+
+        $find_check_order->update(['status_id' => 4] );
+        return back()->with('success','Order Received Successfully');
+    }
 }

@@ -151,7 +151,7 @@
                                                 <a href="{{route('admin_edit_item',$item->id)}}" class="btn btn-info btn-sm">EDIT</a>
                                                 <button class="btn btn-primary btn-sm stock" value="{{$item->id}}" data-toggle="modal" data-target="#stockModal">Stock</button>
                                                 <button class="btn btn-dark btn-sm discount" value="{{$item->id}}" data-toggle="modal" data-target="#discountModal">Discount</button>
-                                                <a href="#" class="btn btn-warning btn-sm">Sold</a>
+                                                <a href="{{route('admin_history_item',$item->id)}}" class="btn btn-warning btn-sm">Sold</a>
                                                 
                                             </td>
                                             
