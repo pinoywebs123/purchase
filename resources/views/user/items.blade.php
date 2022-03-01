@@ -127,7 +127,7 @@
                                             <tr>
                                                 <td>{{$order->item->item_name}}</td>
                                                 <td>{{$order->item->brand}}</td>
-                                                <td>{{$order->item->price}}</td>
+                                                <td>{{$order->item->discounted_price}}</td>
                                                 <td>{{$order->quantity}}</td>
                                                 <td>{{$order->total_price}}</td>
                                                 <td>
