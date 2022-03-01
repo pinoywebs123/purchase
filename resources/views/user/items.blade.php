@@ -102,16 +102,63 @@
                 <!-- Begin Page Content -->
                 <div class="container-fluid">
 
-                    
+                    <div class="card shadow mb-4">
+                        <div class="card-header py-3">
+                            <h6 class="m-0 font-weight-bold text-primary">ORDER LIST</h6>
+                        </div>
+                        <div class="card-body">
+                            <div class="table-responsive">
+                                <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                                    <thead>
+                                        <tr>
+                                            <th>ITEM NAME</th>
+                                            <th>BRAND</th>
+                                            <th>PRICE</th>
+                                            <th>QUANTITY</th>
+                                            <th>TOTAL PRICE</th>
+                                            <th>STATUS</th>
+                                            <th>Actions</th>
+                                            
+                                        </tr>
+                                    </thead>
+                                    
+                                    <tbody>
+                                        @foreach($orders as $order)
+                                            <tr>
+                                                <td>{{$order->item->item_name}}</td>
+                                                <td>{{$order->item->brand}}</td>
+                                                <td>{{$order->item->price}}</td>
+                                                <td>{{$order->quantity}}</td>
+                                                <td>{{$order->total_price}}</td>
+                                                <td>
+                                                    @if( $order->status_id == 1)
+                                                        <span class="btn btn-danger btn-sm">Pending Cart</span>
+                                                    @elseif( $order->status_id == 2)
+                                                        <span class="btn btn-info btn-sm">Waiting for Approval</span>
+                                                    @elseif( $order->status_id == 3)
+                                                       <span class="btn btn-warning btn-sm"> Ship out</span>
+                                                    @elseif( $order->status_id == 4)
+                                                        <span class="btn btn-success btn-sm">Success</span>
 
-                    <!-- Content Row -->
-                    <div class="row">
-
-                        <h1>ITEMS</h1>
+                                                    @endif
+                                                </td>
+                                                <td>
+                                                    
+                                                    @if( $order->status_id == 1)
+                                                        <a href="{{route('cancel_cart',$order->id)}}" class="btn btn-danger btn-sm">Cancel</a>
+                                                        <a href="{{route('checkout_cart',$order->id)}}" class="btn btn-success btn-sm">Check Out</a>
+                                                        
+                                                    @endif
+                                                    
+                                                </td>
+                                            </tr>
+                                        @endforeach
+                                        
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
                     </div>
-
-                   
-                    <!-- Content Row -->
                     
 
                 </div>

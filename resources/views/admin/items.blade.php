@@ -109,65 +109,55 @@
                     <div class="card shadow mb-4">
                         <div class="card-header py-3">
                             <h6 class="m-0 font-weight-bold text-primary">ITEM LIST</h6>
+                            <a href="{{route('admin_create_item')}}" class="btn btn-primary btn-sm">New Item</a>
                         </div>
                         <div class="card-body">
                             <div class="table-responsive">
                                 <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
                                     <thead>
                                         <tr>
-                                            <th>Item Name</th>
-                                            <th>Stock</th>
-                                            <th>Discount</th>
-                                            <th>Shipped</th>
+                                            <th>ITEM NAME</th>
+                                            <th>TYPE</th>
+                                            <th>MATERIAL</th>
+                                            <th>BRAND</th>
+                                            <th>INCHES</th>
+                                            <th>THICKNESS</th>
+                                            <th>VARIANT</th>
+                                            <th>CONNECTION TYPE</th>
+                                            <th>STOCK</th>
+                                            <th>DISCOUNT</th>
+                                            <th>PRICE</th>
                                             <th>Actions</th>
                                             
                                         </tr>
                                     </thead>
                                     
                                     <tbody>
+                                        @foreach($items as $item)
                                         <tr>
-                                            <td>Razer Mouse</td>
-                                            <td>23</td>
-                                            <td>10%</td>
-                                            <td>12</td>
+                                            <th>{{$item->item_name}}</th>
+                                            <th>{{$item->item_type}}</th>
+                                            <th>{{$item->material}}</th>
+                                            <th>{{$item->brand}}</th>
+                                            <th>{{$item->inches}}</th>
+                                            <th>{{$item->thickness}}</th>
+                                            <th>{{$item->variant}}</th>
+                                            <th>{{$item->connection_type}}</th>
+                                            <th>{{$item->stock}}</th>
+                                            <th>{{$item->discount}}</th>
+                                            <th>{{$item->discounted_price}}</th>
                                             <td>
-                                                <button class="btn btn-info btn-sm">Edit</button>
-                                                <button class="btn btn-danger btn-sm">Delete</button>
-                                                <button class="btn btn-primary btn-sm">Stock</button>
-                                                <button class="btn btn-warning btn-sm">Sold</button>
-                                                <button class="btn btn-dark btn-sm">Discount</button>
+                                               
+                                                <a href="{{route('admin_edit_item',$item->id)}}" class="btn btn-info btn-sm">EDIT</a>
+                                                <button class="btn btn-primary btn-sm stock" value="{{$item->id}}" data-toggle="modal" data-target="#stockModal">Stock</button>
+                                                <button class="btn btn-dark btn-sm discount" value="{{$item->id}}" data-toggle="modal" data-target="#discountModal">Discount</button>
+                                                <a href="#" class="btn btn-warning btn-sm">Sold</a>
+                                                
                                             </td>
                                             
                                         </tr>
                                         
-                                        <tr>
-                                            <td>Razer Keyboard</td>
-                                            <td>23</td>
-                                            <td>10%</td>
-                                            <td>12</td>
-                                            <td>
-                                                <button class="btn btn-info btn-sm">Edit</button>
-                                                <button class="btn btn-danger btn-sm">Delete</button>
-                                                <button class="btn btn-primary btn-sm">Stock</button>
-                                                <button class="btn btn-warning btn-sm">Sold</button>
-                                                <button class="btn btn-dark btn-sm">Discount</button>
-                                            </td>
-                                            
-                                        </tr>
-                                        <tr>
-                                            <td>Razer Headset</td>
-                                            <td>23</td>
-                                            <td>10%</td>
-                                            <td>12</td>
-                                            <td>
-                                                <button class="btn btn-info btn-sm">Edit</button>
-                                                <button class="btn btn-danger btn-sm">Delete</button>
-                                                <button class="btn btn-primary btn-sm">Stock</button>
-                                                <button class="btn btn-warning btn-sm">Sold</button>
-                                                <button class="btn btn-dark btn-sm">Discount</button>
-                                            </td>
-                                            
-                                        </tr>
+                                        @endforeach
                                         
                                     </tbody>
                                 </table>
@@ -222,6 +212,56 @@
         </div>
     </div>
 
+   <div class="modal fade" id="stockModal" tabindex="-1" role="dialog" aria-labelledby="stockModalLabel"
+        aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Add New Stock?</h5>
+                    <button class="close" type="button" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">×</span>
+                    </button>
+                </div>
+                <form action="{{route('admin_update_item_stock_check')}}" method="POST">
+                    @csrf
+                    <div class="modal-body">
+                        <input type="hidden" name="item_id" id="stock_item_id">
+                        <input type="number" name="stock" class="form-control" id="stock_item_value">
+                    </div>
+                <div class="modal-footer">
+                    <button type="submit" class="btn btn-primary">Submit</button>
+                    <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
+                </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <div class="modal fade" id="discountModal" tabindex="-1" role="dialog" aria-labelledby="discountModalLabel"
+        aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Update Discount?</h5>
+                    <button class="close" type="button" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">×</span>
+                    </button>
+                </div>
+                <form action="{{route('admin_update_item_discount_check')}}" method="POST">
+                    @csrf
+                    <div class="modal-body">
+                        <input type="hidden" name="item_id" id="discount_item_id">
+                        <input type="number" name="discount" class="form-control" id="discount_item_value">
+                    </div>
+                <div class="modal-footer">
+                    <button class="btn btn-primary" type="submit" >Submit</button>
+                    <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
+                </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
     <!-- Bootstrap core JavaScript-->
     <script src="{{URL::to('vendor/jquery/jquery.min.js')}}"></script>
     <script src="{{URL::to('vendor/bootstrap/js/bootstrap.bundle.min.js')}}"></script>
@@ -238,6 +278,42 @@
 
     <!-- Page level custom scripts -->
     <script src="{{URL::to('js/demo/datatables-demo.js')}}"></script>
+    <script type="text/javascript">
+        $(document).ready(function(){
+            var urlStock = '{{route('admin_update_item_stock')}}';
+            var urlDiscount = '{{route('admin_update_item_discount')}}';
+            var token = '{{Session::token()}}';
+
+            $(".stock").click(function(){
+                var item_id = $(this).val();
+                    $.ajax({
+                       type:'POST',
+                       url: urlStock,
+                       data:{_token: token, item_id : item_id},
+                       success:function(data) {
+                          console.log(data);
+                          $("#stock_item_id").val(data.id);
+                          $("#stock_item_value").val(data.stock);
+                       }
+                    });
+            });
+
+            $(".discount").click(function(){
+                var item_id = $(this).val();
+                    $.ajax({
+                       type:'POST',
+                       url: urlDiscount,
+                       data:{_token: token, item_id : item_id},
+                       success:function(data) {
+                          console.log(data);
+                          $("#discount_item_id").val(data.id);
+                          $("#discount_item_value").val(data.discount);
+                       }
+                    });
+            });
+
+        });
+    </script>
 
 </body>
 

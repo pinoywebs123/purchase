@@ -14,6 +14,13 @@
             <!-- Nav Item - Pages Collapse Menu -->
            
 
+            <li class="nav-item active">
+                <a class="nav-link " href="{{url('/')}}">
+                    <i class="fas fa-fw fa-solid fa-house-user"></i>
+
+                    <span>Store</span></a>
+            </li>
+
             <!-- Nav Item - Charts -->
             <li class="nav-item active">
                 <a class="nav-link " href="{{route('user_home')}}">

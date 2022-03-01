@@ -6,9 +6,25 @@ use Illuminate\Http\Request;
 use Spatie\Permission\Models\Role;
 use App\User;
 use Illuminate\Support\Facades\Auth;
+use App\Item;
+use App\Order;
+
 
 class AuthController extends Controller
 {
+    public function home()
+    {
+        $items = Item::all();
+        if(Auth::check()){
+            $cart = Order::where('user_id', Auth::id())->where('status_id',1)->count();
+            return view('welcome',compact('items','cart'));
+        }else
+        {
+            return view('welcome',compact('items'));
+        }
+
+
+    }
     public function login()
     {
         return view('auth.login');

@@ -6,16 +6,28 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use App\User;
 use App\Message;
+use App\Item;
+use App\Order;
+
 class AdminController extends Controller
 {
     
     public function home()
     {
-        return view('admin.home');
+        $total_user = User::whereHas(
+            'roles', function($q){
+                $q->where('name', 'user');
+            }
+        )->count();
+        $total_items = Item::count();
+        $total_stock = Item::sum('stock');
+        $total_shipped = Order::where('status_id',4)->orWhere('status_id', 3)->count();
+        return view('admin.home',compact('total_user','total_items','total_stock','total_shipped'));
     }
     public function items()
     {
-        return view('admin.items');
+        $items = Item::all();
+        return view('admin.items',compact('items'));
     }
     public function users()
     {
@@ -56,5 +68,58 @@ class AdminController extends Controller
     {
         Auth::logout();
         return redirect('/login');
+    }
+
+    public function create_item()
+    {
+        return view('admin.item_create');
+    }
+
+    public function create_item_check(Request $request)
+    {
+        Item::create($request->all());
+
+        return back()->with('success','Item Created Successfully!');
+    }
+
+    public function edit_item($id)
+    {
+        $item = Item::find($id);
+        return view('admin.item_edit',compact('item'));
+    }
+
+    public function update_item(Request $request, $id)
+    {
+        $item = Item::find($id);
+        $item->update($request->all());
+
+        return back()->with('success','Item Updated Successfully!');
+    }
+
+    public function update_item_stock(Request $request)
+    {
+        
+        $find_item = Item::find($request->item_id);
+        return response()->json($find_item);
+    }
+
+    public function update_item_stock_check(Request $request)
+    {
+        $find_item = Item::find($request->item_id);
+        $find_item->update(['stock'=> $find_item->stock + $request->stock]);
+        return back()->with('success','Item Updated Stock Successfully!');
+    }
+
+    public function update_item_discount(Request $request)
+    {
+        $find_item = Item::find($request->item_id);
+        return response()->json($find_item);
+    }
+
+    public function update_item_discount_check(Request $request)
+    {
+        $find_item = Item::find($request->item_id);
+        $find_item->update(['discount'=> + $request->discount ]);
+        return back()->with('success','Item Updated Discount Successfully!');
     }
 }
