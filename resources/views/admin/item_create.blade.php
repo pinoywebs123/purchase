@@ -112,8 +112,14 @@
                             @include('shared.notification')
                         </div>
                         <div class="card-body">
-                            <form action="{{route('admin_create_item_check')}}" method="POST">
+                            <form action="{{route('admin_create_item_check')}}" method="POST" enctype="multipart/form-data">
                             	@csrf
+                                <div class="row">
+                                    <div class="form-group">
+                                        <label>Select Image</label>
+                                        <input type="file" name="image" class="form-control" required>
+                                    </div>
+                                </div>
                             	<div class="row">
                             		<div class="col-lg-4">
                             			<div class="form-group">
@@ -199,39 +205,14 @@
                             			</div>
                             		</div>
                             	</div>
-                            	<div class="row">
-                            		<div class="col-lg-4">
-                            			<div class="form-group">
-                            				 <input type="text" name="min_competitor_price" class="form-control" placeholder="MIN COMPETITOR PRICE">
-                            			</div>
-                            		</div>
-                            		<div class="col-lg-4">
-                            			<div class="form-group">
-                            				 <input type="text" name="max_competitor_price" class="form-control" placeholder="MAX COMPETITOR PRICE">
-                            			</div>
-                            		</div>
-                            		<div class="col-lg-4">
-                            			<div class="form-group">
-                            				 <input type="text" name="average_competitor_price" class="form-control" placeholder="AVERAGE COMPETITOR PRICE">
-                            			</div>
-                            		</div>
-                            	</div>
+                            	
                             	<div class="row">
                             		<div class="col-lg-4">
                             			<div class="form-group">
                             				 <input type="text" name="unit_cost" class="form-control" placeholder="UNIT COST">
                             			</div>
                             		</div>
-                            		<div class="col-lg-4">
-                            			<div class="form-group">
-                            				 <input type="text" name="mill_cert_link" class="form-control" placeholder="MILL CERT LINK">
-                            			</div>
-                            		</div>
-                            		<div class="col-lg-4">
-                            			<div class="form-group">
-                            				 <input type="text" name="catalog" class="form-control" placeholder="CATALOG">
-                            			</div>
-                            		</div>
+                            		
                             	</div>
                             	<button type="submit" class="btn btn-success btn-block">SUBMIT</button>
                             </form>

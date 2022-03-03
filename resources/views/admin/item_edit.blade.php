@@ -199,39 +199,14 @@
                             			</div>
                             		</div>
                             	</div>
-                            	<div class="row">
-                            		<div class="col-lg-4">
-                            			<div class="form-group">
-                            				 <input type="text" name="min_competitor_price" class="form-control" placeholder="MIN COMPETITOR PRICE" value="{{$item->min_competitor_price}}">
-                            			</div>
-                            		</div>
-                            		<div class="col-lg-4">
-                            			<div class="form-group">
-                            				 <input type="text" name="max_competitor_price" class="form-control" placeholder="MAX COMPETITOR PRICE" value="{{$item->max_competitor_price}}">
-                            			</div>
-                            		</div>
-                            		<div class="col-lg-4">
-                            			<div class="form-group">
-                            				 <input type="text" name="average_competitor_price" class="form-control" placeholder="AVERAGE COMPETITOR PRICE" value="{{$item->average_competitor_price}}">
-                            			</div>
-                            		</div>
-                            	</div>
+                            	
                             	<div class="row">
                             		<div class="col-lg-4">
                             			<div class="form-group">
                             				 <input type="text" name="unit_cost" class="form-control" placeholder="UNIT COST" value="{{$item->unit_cost}}">
                             			</div>
                             		</div>
-                            		<div class="col-lg-4">
-                            			<div class="form-group">
-                            				 <input type="text" name="mill_cert_link" class="form-control" placeholder="MILL CERT LINK" value="{{$item->mill_cert_link}}">
-                            			</div>
-                            		</div>
-                            		<div class="col-lg-4">
-                            			<div class="form-group">
-                            				 <input type="text" name="catalog" class="form-control" placeholder="CATALOG" value="{{$item->catalog}}">
-                            			</div>
-                            		</div>
+                            		
                             	</div>
                             	<button type="submit" class="btn btn-success btn-block">SUBMIT</button>
                             </form>

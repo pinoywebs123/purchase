@@ -41,6 +41,8 @@ Route::group(['prefix'=> 'user'], function(){
     Route::get('/items','UserController@items')->name('user_items');
     Route::get('/message','UserController@message')->name('user_message');
     Route::post('/message','UserController@message_check')->name('message_check');
+    Route::get('/all-products','UserController@all_products')->name('all_products');
+    Route::get('/all--recommended-products','UserController@all_recommended_products')->name('all_recommended_products');
 
     //cart
     Route::get('/add-cart/{id}','UserController@add_cart')->name('add_cart');   

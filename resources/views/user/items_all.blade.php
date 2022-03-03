@@ -65,41 +65,66 @@
         <!-- Section-->
         <section class="py-5">
             <div class="container px-4 px-lg-5 mt-5">
-                @auth
-                <h3>Recommended</h3>
-                <div class="row gx-4 gx-lg-5 row-cols-2 row-cols-md-3 row-cols-xl-4 justify-content-center">
-                    
+                
+                  <form method="GET">
+                    <button type="submit" class="btn btn-danger btn-sm">Filter</button>
+                      <div class="row">
+                          <div class="col-lg-3">
+                             <div class="form-group">
+                                <label>Material</label>
+                                <select class="form-control" name="material">
+                                    <option value="0">ALL</option>
+                                    @foreach($materials as $material)
+                                    <option value="{{$material->material}}" {{isset($_GET['material']) == $material->material ? 'selected' : ''}}>{{$material->material}}</option>
+                                    @endforeach
+                                </select>
+                             </div>
+                          </div>
 
-                    @foreach($recommended as $item)
-                    
-                    <div class="col-4 mb-5">
-                        <div class="card h-100">
-                            <!-- Product image-->
-                            <img class="card-img-top" src="{{URL::to('images/'.$item->image)}}" height="250" width="400" alt="..." />
-                            <!-- Product details-->
-                            <div class="card-body p-4">
-                                <div class="text-center">
-                                    <!-- Product name-->
-                                    <h5 class="fw-bolder">{{$item->item_name}}</h5>
-                                    <!-- Product price-->
-                                    Price: {{$item->discounted_price}}
-                                </div>
-                            </div>
-                            <!-- Product actions-->
-                            <div class="card-footer p-4 pt-0 border-top-0 bg-transparent">
-                                <div class="text-center"><a class="btn btn-outline-danger mt-auto" href="{{route('add_cart',$item->id)}}">Add Cart</a></div>
-                            </div>
-                        </div>
-                    </div>
+                          <div class="col-lg-3">
+                             <div class="form-group">
+                                <label>Item type</label>
+                                <select class="form-control" name="item_type">
+                                    <option value="0">ALL</option>
+                                    @foreach($item_types as $item_type)
+                                    <option value="{{$item_type->item_type}}" {{isset($_GET['item_type']) == $item_type->item_type ? 'selected' : ''}}>{{$item_type->item_type}}</option>
+                                    @endforeach
+                                </select>
+                             </div>
+                          </div>
 
-                    @endforeach
+                          <div class="col-lg-3">
+                             <div class="form-group">
+                                <label>Brand</label>
+                                <select class="form-control" name="brand">
+                                    <option value="0">ALL</option>
+                                    @foreach($brands as $brand)
+                                    <option value="{{$brand->brand}}" {{isset($_GET['brand']) == $brand->brand ? 'selected' : ''}}>{{$brand->brand}}</option>
+                                    @endforeach
+                                </select>
+                             </div>
+                          </div>
 
-                    </div>
-                    <div class="row">
-                        <a href="{{route('all_recommended_products')}}" class="text-right">See All</a>
-                    </div>
-                  @endauth  
-                  
+                          <div class="col-lg-3">
+                             <div class="form-group">
+                                <label>Country</label>
+                                <select class="form-control" name="country">
+                                    <option value="0">ALL</option>
+                                    @foreach($countries as $country)
+                                    <option value="{{$country->country_origin}}" {{isset($_GET['country']) == $country->country_origin ? 'selected' : ''}}>{{$country->country_origin}}</option>
+                                    @endforeach
+                                </select>
+                             </div>
+
+                          </div>
+                          
+                          
+
+                      </div>
+
+                      
+
+                  </form>
                   <h3>Products</h3>
                     <div class="row gx-4 gx-lg-5 row-cols-2 row-cols-md-3 row-cols-xl-4 justify-content-center">
                         
@@ -135,9 +160,7 @@
                         
                         
                         </div>
-                        <div class="row">
-                            <a href="{{route('all_products')}}" class="text-right">See All</a>
-                        </div> 
+                        
                 </div>
             </div>
         </section>

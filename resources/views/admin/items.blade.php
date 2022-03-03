@@ -127,6 +127,7 @@
                                             <th>STOCK</th>
                                             <th>DISCOUNT</th>
                                             <th>PRICE</th>
+                                            <th>UNIT COST</th>
                                             <th>Actions</th>
                                             
                                         </tr>
@@ -146,6 +147,7 @@
                                             <th>{{$item->stock}}</th>
                                             <th>{{$item->discount}}</th>
                                             <th>{{$item->discounted_price}}</th>
+                                            <th>{{$item->unit_cost}}</th>
                                             <td>
                                                
                                                 <a href="{{route('admin_edit_item',$item->id)}}" class="btn btn-info btn-sm">EDIT</a>

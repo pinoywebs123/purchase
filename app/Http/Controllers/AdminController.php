@@ -77,7 +77,16 @@ class AdminController extends Controller
 
     public function create_item_check(Request $request)
     {
-        Item::create($request->all());
+        $data = $request->all();
+        unset($data['image']);
+
+        $imageName = time().'.'.$request->image->extension();  
+     
+        $request->image->move(public_path('images'), $imageName);
+
+        $data['image'] = $imageName;
+
+        Item::create($data);
 
         return back()->with('success','Item Created Successfully!');
     }

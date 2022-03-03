@@ -106,4 +106,121 @@ class UserController extends Controller
         $find_check_order->update(['status_id' => 4] );
         return back()->with('success','Order Received Successfully');
     }
+
+    public function all_products()
+    {
+        $cart = Order::where('user_id', Auth::id())->where('status_id',1)->count();
+        
+        $materials = Item::select('id','material')->get();
+        $item_types = Item::select('id','item_type')->get();
+        $brands = Item::select('id','brand')->get();
+        $countries = Item::select('country_origin')->groupBy('country_origin')->get();
+
+        $queries = Item::select("*");
+
+        if(isset($_GET['material'])){
+            $material =  trim($_GET['material']);
+            if($material != '0')
+            {
+               $queries = $queries->where('material',$material);
+
+            }
+            
+            
+        }
+        if(isset($_GET['item_type'])){
+            $item_type =  trim($_GET['item_type']);
+            if($item_type != '0')
+            {
+                $queries = $queries->where('item_type',$item_type);
+            }
+            
+            
+        }
+        if(isset($_GET['brand'])){
+            $brand =  trim($_GET['brand']);
+            if($brand != '0')
+            {
+              $queries = $queries->where('brand',$brand);  
+            }
+            
+        }
+        if(isset($_GET['country'])){
+            $country =  trim($_GET['country']);
+            if($item_type != '0')
+            {
+                $queries = $queries->where('country_origin',$country);
+            }
+            
+            
+        }
+
+
+         $items = $queries->get();
+
+        return view('user.items_all',compact('items','cart','materials','item_types','brands','countries'));
+    }
+
+    public function all_recommended_products()
+    {
+        $cart = Order::where('user_id', Auth::id())->where('status_id',1)->count();
+        
+        $materials = Item::select('id','material')->get();
+        $item_types = Item::select('id','item_type')->get();
+        $brands = Item::select('id','brand')->get();
+        $countries = Item::select('country_origin')->groupBy('country_origin')->get();
+
+         $user_history_orders = Order::select('item_id')->where('user_id', Auth::id())->groupBy('item_id')->with('item')->get();
+
+        $queries = Item::select("*");
+
+        foreach($user_history_orders as $order_hsitory)
+        {
+            $queries = $queries->where('material', 'LIKE','%'.$order_hsitory->item->material.'%');
+             $queries = $queries->where('item_type', 'LIKE','%'.$order_hsitory->item->item_type.'%');
+        }
+        
+
+        if(isset($_GET['material'])){
+            $material =  trim($_GET['material']);
+            if($material != '0')
+            {
+               $queries = $queries->where('material',$material);
+
+            }
+            
+            
+        }
+        if(isset($_GET['item_type'])){
+            $item_type =  trim($_GET['item_type']);
+            if($item_type != '0')
+            {
+                $queries = $queries->where('item_type',$item_type);
+            }
+            
+            
+        }
+        if(isset($_GET['brand'])){
+            $brand =  trim($_GET['brand']);
+            if($brand != '0')
+            {
+              $queries = $queries->where('brand',$brand);  
+            }
+            
+        }
+        if(isset($_GET['country'])){
+            $country =  trim($_GET['country']);
+            if($item_type != '0')
+            {
+                $queries = $queries->where('country_origin',$country);
+            }
+            
+            
+        }
+
+
+         $items = $queries->get();
+
+        return view('user.items_recommended',compact('items','cart','materials','item_types','brands','countries'));
+    }
 }

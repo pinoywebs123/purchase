@@ -14,10 +14,22 @@ class AuthController extends Controller
 {
     public function home()
     {
-        $items = Item::all();
+        $items = Item::limit(6)->get();
         if(Auth::check()){
             $cart = Order::where('user_id', Auth::id())->where('status_id',1)->count();
-            return view('welcome',compact('items','cart'));
+            $user_history_orders = Order::select('item_id')->where('user_id', Auth::id())->groupBy('item_id')->with('item')->get();
+
+            $queries = Item::select("*");
+
+            foreach($user_history_orders as $order_hsitory)
+            {
+                $queries = $queries->where('material', 'LIKE','%'.$order_hsitory->item->material.'%');
+                $queries = $queries->where('item_type', 'LIKE','%'.$order_hsitory->item->item_type.'%');
+            }
+
+             $recommended = $queries->get();
+
+            return view('welcome',compact('items','cart','recommended'));
         }else
         {
             return view('welcome',compact('items'));
