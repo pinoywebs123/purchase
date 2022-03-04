@@ -65,7 +65,13 @@
         <!-- Section-->
         <section class="py-5">
             <div class="container px-4 px-lg-5 mt-5">
-                
+                  <div style="float: right;">
+                      <form method="GET">
+                         
+                          <input type="text" name="search">
+                          <button type="submit">Search</button>
+                      </form>
+                  </div>  
                   <form method="GET">
                     <button type="submit" class="btn btn-danger btn-sm">Filter</button>
                       <div class="row">

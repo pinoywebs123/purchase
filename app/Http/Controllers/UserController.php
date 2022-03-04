@@ -155,6 +155,13 @@ class UserController extends Controller
             
         }
 
+        if(isset($_GET['search'])){
+            $search =  trim($_GET['search']);
+            $queries = $queries->where('product_code','LIKE','%'.$search.'%')->orWhere('item_name','LIKE','%'.$search.'%')->orWhere('item_type','LIKE','%'.$search.'%');
+            
+            
+        }
+
 
          $items = $queries->get();
 
@@ -177,7 +184,7 @@ class UserController extends Controller
         foreach($user_history_orders as $order_hsitory)
         {
             $queries = $queries->where('material', 'LIKE','%'.$order_hsitory->item->material.'%');
-             $queries = $queries->where('item_type', 'LIKE','%'.$order_hsitory->item->item_type.'%');
+            $queries = $queries->where('item_type', 'LIKE','%'.$order_hsitory->item->item_type.'%');
         }
         
 
