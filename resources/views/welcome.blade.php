@@ -1,162 +1,333 @@
 <!DOCTYPE html>
 <html lang="en">
-    <head>
-        <meta charset="utf-8" />
-        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
-        <meta name="description" content="" />
-        <meta name="author" content="" />
-        <title>Title Here</title>
-        <!-- Favicon-->
-        <link rel="icon" type="image/x-icon" href="{{URL::to('home/assets/favicon.ico')}}" />
-        <!-- Bootstrap icons-->
-        <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css" rel="stylesheet" />
-        <!-- Core theme CSS (includes Bootstrap)-->
-        <link href="{{URL::to('home/css/styles.css')}}" rel="stylesheet" />
-        <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.css">
-        <style type="text/css">
-            a {
-                text-align: right;
-            }
-        </style>
-    </head>
-    <body>
-        <!-- Navigation-->
-        <nav class="navbar navbar-expand-lg navbar-light bg-light">
-            <div class="container px-4 px-lg-5">
-                <a class="navbar-brand" href="#!">Industrial Shop</a>
-                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation"><span class="navbar-toggler-icon"></span></button>
-                <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                    <ul class="navbar-nav me-auto mb-2 mb-lg-0 ms-lg-4">
-                        <li class="nav-item"><a class="nav-link active" aria-current="page" href="{{url('/')}}">Home</a></li>
-                        <li class="nav-item"><a class="nav-link" href="#!">About</a></li>
-                        
-                    </ul>
-                    
-                    <form class="d-flex">
-                        @auth
-                           <a href="{{route('user_items')}}" class="btn btn-outline-dark">
-                            <i class="bi bi-cart">
-                                
-                            </i>
-                            <span >{{$cart}}</span>
-                            
-                             </a> 
-                        @else
-                        <a href="{{url('/login')}}" class="btn btn-outline-dark">
-                            <i class="bi bi-person-lines-fill"></i>
-                            Login
-                            
-                        </a>
-                        @endauth
-                        
-                    </form>
-                </div>
-            </div>
-        </nav>
-        <!-- Header-->
-        <header class="bg-danger py-5">
-            <div class="container px-4 px-lg-5 my-5">
-                <div class="text-center text-white">
-                    <h1 class="display-4 fw-bolder">Buy now and build you're Future.</h1>
-                    <p class="lead fw-normal text-white-50 mb-0">Enjoy the most reliable and cheapest items.</p>
-                </div>
-            </div>
-        </header>
-        <!-- Section-->
-        <section class="py-5">
-            <div class="container px-4 px-lg-5 mt-5">
-                @auth
-                <h3>Recommended</h3>
-                <div class="row gx-4 gx-lg-5 row-cols-2 row-cols-md-3 row-cols-xl-4 justify-content-center">
-                    
+<head>
 
-                    @foreach($recommended as $item)
+  <!-- SITE TITTLE -->
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Online Store</title>
+  
+  <!-- FAVICON -->
+  <link href="img/favicon.png" rel="shortcut icon">
+  <!-- PLUGINS CSS STYLE -->
+  <!-- <link href="plugins/jquery-ui/jquery-ui.min.css" rel="stylesheet"> -->
+  <!-- Bootstrap -->
+  <link rel="stylesheet" href="{{URL::to('home/plugins/bootstrap/css/bootstrap.min.css')}}">
+  <link rel="stylesheet" href="{{URL::to('home/plugins/bootstrap/css/bootstrap-slider.css')}}">
+  <!-- Font Awesome -->
+  <link href="{{URL::to('home/plugins/font-awesome/css/font-awesome.min.css')}}" rel="stylesheet">
+  <!-- Owl Carousel -->
+  <link href="{{URL::to('home/plugins/slick-carousel/slick/slick.css')}}" rel="stylesheet">
+  <link href="{{URL::to('home/plugins/slick-carousel/slick/slick-theme.css')}}" rel="stylesheet">
+  <!-- Fancy Box -->
+  <link href="{{URL::to('home/plugins/fancybox/jquery.fancybox.pack.css')}}" rel="stylesheet">
+  <link href="{{URL::to('home/plugins/jquery-nice-select/css/nice-select.css')}}" rel="stylesheet">
+  <!-- CUSTOM CSS -->
+  <link href="{{URL::to('home/css/style.css')}}" rel="stylesheet">
+
+
+  <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+  <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+  <!--[if lt IE 9]>
+  <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
+  <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+  <![endif]-->
+
+</head>
+
+<body class="body-wrapper">
+
+
+<section>
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+                <nav class="navbar navbar-expand-lg navbar-light navigation">
+                    <a class="navbar-brand" href="{{url('/')}}">
+                        <img src="{{URL::to('home/images/logo.png')}}" alt="">
+                    </a>
+                    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+                     aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                        <span class="navbar-toggler-icon"></span>
+                    </button>
+                    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                        
+                        <ul class="navbar-nav ml-auto mt-10">
+                            <li class="nav-item">
+                                 @auth
+                                   <a href="{{route('user_items')}}" class="nav-link login-button">
+                                    <i class="bi bi-cart">
+                                        
+                                    </i>
+                                    <span >{{$cart}}</span>
+                                    
+                                     </a> 
+                                @else
+                                <a href="{{url('/login')}}" class="nav-link login-button">
+                                    
+                                    Login
+                                    
+                                </a>
+                                @endauth
+
+                                
+                            </li>
+                            @auth
+                            <li class="nav-item">
+                                <a class="nav-link text-white add-button" href="{{url('/user/home')}}"> {{Auth::user()->first_name}} {{Auth::user()->last_name}}</a>
+                            </li>
+                            @endauth
+                        </ul>
+                    </div>
+                </nav>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!--===============================
+=            Hero Area            =
+================================-->
+
+<section class="hero-area bg-1 text-center overly">
+    <!-- Container Start -->
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+                <!-- Header Contetnt -->
+                <div class="content-block">
+                    <h1>Top Industrial Store</h1>
+                    <p>Join the millions who buy and sell from each other <br> everyday in local communities around the world</p>
                     
-                    <div class="col-4 mb-5">
-                        <div class="card h-100">
-                            <!-- Product image-->
-                            <img class="card-img-top" src="{{URL::to('images/'.$item->image)}}" height="250" width="400" alt="..." />
-                            <!-- Product details-->
-                            <div class="card-body p-4">
-                                <div class="text-center">
-                                    <!-- Product name-->
-                                    <h5 class="fw-bolder">{{$item->item_name}}</h5>
-                                    <!-- Product price-->
-                                    Price: {{$item->discounted_price}}
+                    
+                </div>
+                <!-- Advance Search -->
+                <div class="advance-search">
+                        <div class="container">
+                            <div class="row justify-content-center">
+                                <div class="col-lg-12 col-md-12 align-content-center">
+                                        <form>
+                                            <div class="form-row">
+                                                <div class="form-group col-md-8">
+                                                    <input type="text" class="form-control my-2 my-lg-1" id="inputtext4" placeholder="What are you looking for">
+                                                </div>
+                                                
+                                                
+                                                <div class="form-group col-md-2 align-self-center">
+                                                    <button type="submit" class="btn btn-primary">Search Now</button>
+                                                </div>
+                                            </div>
+                                        </form>
+                                    </div>
+                                </div>
+                    </div>
+                </div>
+                
+            </div>
+        </div>
+    </div>
+    <!-- Container End -->
+</section>
+
+<!--===================================
+=            Client Slider            =
+====================================-->
+
+
+<!--===========================================
+=            Popular deals section            =
+============================================-->
+@auth
+<section class="popular-deals section bg-gray">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="section-title">
+                    <h2>Recommended Products</h2>
+                    
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <!-- offer 01 -->
+            <div class="col-lg-12">
+                <div class="trending-ads-slide">
+                     @foreach($recommended as $item)
+                    <div class="col-sm-12 col-lg-12">
+                        <!-- product card -->
+                        <div class="product-item bg-light">
+                            <div class="card">
+                                <div class="thumb-content">
+                                    <!-- <div class="price">$200</div> -->
+                                    <a href="single.html">
+                                        <img class="card-img-top img-fluid" src="{{URL::to('images/'.$item->image)}}" alt="Card image cap">
+                                    </a>
+                                </div>
+                                <div class="card-body">
+                                    <h4 class="card-title"><a href="single.html">{{$item->item_name}}</a></h4>
+                                    <ul class="list-inline product-meta">
+                                        
+                                        <li class="list-inline-item">
+                                            <a href="#"><i class="fa fa-calendar"></i>{{$item->created_at->toDayDateTimeString()}}</a>
+                                        </li>
+                                    </ul>
+                                    <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Explicabo, aliquam!</p>
+                                    <div class="card-footer p-4 pt-0 border-top-0 bg-transparent">
+                                        <div class="text-center"><a class="btn btn-outline-danger mt-auto" href="{{route('add_cart',$item->id)}}">Add Cart</a></div>
+                                    </div>
                                 </div>
                             </div>
-                            <!-- Product actions-->
-                            <div class="card-footer p-4 pt-0 border-top-0 bg-transparent">
-                                <div class="text-center"><a class="btn btn-outline-danger mt-auto" href="{{route('add_cart',$item->id)}}">Add Cart</a></div>
-                            </div>
                         </div>
+
+
+
                     </div>
 
                     @endforeach
 
-                    </div>
-                    <div class="row">
-                        <a href="{{route('all_recommended_products')}}" class="text-right">See All</a>
-                    </div>
-                  @endauth  
-                  
-                  <h3>Products</h3>
-                    <div class="row gx-4 gx-lg-5 row-cols-2 row-cols-md-3 row-cols-xl-4 justify-content-center">
-                        
 
-                        @foreach($items as $item)
-                        
-                        <div class="col-4 mb-5">
-                            <div class="card h-100">
-                                <!-- Product image-->
-                                <img class="card-img-top" src="{{URL::to('images/'.$item->image)}}" height="250" width="400" alt="..." />
-                                <!-- Product details-->
-                                <div class="card-body p-4">
-                                    <div class="text-center">
-                                        <!-- Product name-->
-                                        <h5 class="fw-bolder">{{$item->item_name}}</h5>
-                                        <!-- Product price-->
-                                        Price: {{$item->discounted_price}}
-                                    </div>
+                    
+
+                    </div>
+                    
+                    
+                </div>
+            </div>
+            
+            
+        </div>
+    </div>
+</section>
+@endauth
+
+<section class="popular-deals section bg-gray">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="section-title">
+                    <h2>New Products</h2>
+                    
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <!-- offer 01 -->
+            <div class="col-lg-12">
+                <div class="trending-ads-slide">
+                     @foreach($items as $item)
+                    <div class="col-sm-12 col-lg-12">
+                        <!-- product card -->
+                        <div class="product-item bg-light">
+                            <div class="card">
+                                <div class="thumb-content">
+                                    <!-- <div class="price">$200</div> -->
+                                    <a href="single.html">
+                                        <img class="card-img-top img-fluid" src="{{URL::to('images/'.$item->image)}}" alt="Card image cap">
+                                    </a>
                                 </div>
-                                <!-- Product actions-->
-                                <div class="card-footer p-4 pt-0 border-top-0 bg-transparent">
-                                    @auth
-                                        <div class="text-center"><a class="btn btn-outline-primary mt-auto" href="{{route('add_cart',$item->id)}}">Add Cart</a></div>
-                                    @else
-                                        <div class="text-center"><a class="btn btn-outline-primary mt-auto" href="{{url('/login')}}">Add Cart</a></div>
-                                    @endauth
-                                    
+                                <div class="card-body">
+                                    <h4 class="card-title"><a href="single.html">{{$item->item_name}}</a></h4>
+                                    <ul class="list-inline product-meta">
+                                        
+                                        <li class="list-inline-item">
+                                            <a href="#"><i class="fa fa-calendar"></i>{{$item->created_at->toDayDateTimeString()}}</a>
+                                        </li>
+                                    </ul>
+                                    <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Explicabo, aliquam!</p>
+                                    <div class="card-footer p-4 pt-0 border-top-0 bg-transparent">
+                                        <div class="text-center"><a class="btn btn-outline-danger mt-auto" href="{{route('add_cart',$item->id)}}">Add Cart</a></div>
+                                    </div>
                                 </div>
                             </div>
                         </div>
 
-                        @endforeach
-                        
-                        
-                        </div>
-                        <div class="row">
-                            <a href="{{route('all_products')}}" class="text-right">See All</a>
-                        </div> 
+
+
+                    </div>
+
+                    @endforeach
+
+
+                    
+
+                    </div>
+                    
+                    
                 </div>
             </div>
-        </section>
-        <!-- Footer-->
-        <footer class="py-5 bg-dark">
-            <div class="container"><p class="m-0 text-center text-white">Copyright &copy; Your Website 2021</p></div>
-        </footer>
-        <!-- Bootstrap core JS-->
-        <script src="{{URL::to('vendor/jquery/jquery.min.js')}}"></script>
-        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
-        <!-- Core theme JS-->
-        <script src="{{URL::to('home/js/scripts.js')}}"></script>
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
-        
-            <script type="text/javascript">
-                @if(Session::has('success'))
-                    toastr.success('Added to Cart', 'Success')
-                @endif
-            </script>
-        
-    </body>
+            
+            
+        </div>
+    </div>
+</section>
+
+
+<!--==========================================
+=            All Category Section            =
+===========================================-->
+
+
+
+
+<!--====================================
+=            Call to Action            =
+=====================================-->
+
+
+
+<!-- Footer Bottom -->
+<footer class="footer-bottom">
+  <!-- Container Start -->
+  <div class="container">
+    <div class="row">
+      <div class="col-sm-6 col-12">
+        <!-- Copyright -->
+        <div class="copyright">
+          <p>Copyright © <script>
+              var CurrentYear = new Date().getFullYear()
+              document.write(CurrentYear)
+            </script>. All Rights Reserved, by <a class="text-primary" href="#" target="_blank">Team Unity BBM</a></p>
+        </div>
+      </div>
+      <div class="col-sm-6 col-12">
+        <!-- Social Icons -->
+        <ul class="social-media-icons text-right">
+          <li><a class="fa fa-facebook" href="https://www.facebook.com/themefisher" target="_blank"></a></li>
+          <li><a class="fa fa-twitter" href="https://www.twitter.com/themefisher" target="_blank"></a></li>
+          <li><a class="fa fa-pinterest-p" href="https://www.pinterest.com/themefisher" target="_blank"></a></li>
+          <li><a class="fa fa-vimeo" href=""></a></li>
+        </ul>
+      </div>
+    </div>
+  </div>
+  <!-- Container End -->
+  <!-- To Top -->
+  <div class="top-to">
+    <a id="top" class="" href="#"><i class="fa fa-angle-up"></i></a>
+  </div>
+</footer>
+
+<!-- JAVASCRIPTS -->
+<script src="{{URL::to('home/plugins/jQuery/jquery.min.js')}}"></script>
+<script src="{{URL::to('home/plugins/bootstrap/js/popper.min.js')}}"></script>
+<script src="{{URL::to('home/plugins/bootstrap/js/bootstrap.min.js')}}"></script>
+<script src="{{URL::to('home/plugins/bootstrap/js/bootstrap-slider.js')}}"></script>
+  <!-- tether js -->
+<script src="{{URL::to('home/plugins/tether/js/tether.min.js')}}"></script>
+<script src="{{URL::to('home/plugins/raty/jquery.raty-fa.js')}}"></script>
+<script src="{{URL::to('home/plugins/slick-carousel/slick/slick.min.js')}}"></script>
+<script src="{{URL::to('home/plugins/jquery-nice-select/js/jquery.nice-select.min.js')}}"></script>
+<script src="{{URL::to('home/plugins/fancybox/jquery.fancybox.pack.js')}}"></script>
+<script src="{{URL::to('home/plugins/smoothscroll/SmoothScroll.min.js')}}"></script>
+<!-- google map -->
+<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCcABaamniA6OL5YvYSpB3pFMNrXwXnLwU&libraries=places"></script>
+<script src="{{URL::to('home/plugins/google-map/gmap.js')}}"></script>
+<script src="{{URL::to('home/js/script.js')}}"></script>
+
+</body>
+
 </html>
+
+
+
