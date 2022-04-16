@@ -284,10 +284,7 @@
       <div class="col-sm-6 col-12">
         <!-- Copyright -->
         <div class="copyright">
-          <p>Copyright © <script>
-              var CurrentYear = new Date().getFullYear()
-              document.write(CurrentYear)
-            </script>. All Rights Reserved, by <a class="text-primary" href="#" target="_blank">Team Unity BBM</a></p>
+          
         </div>
       </div>
       <div class="col-sm-6 col-12">
