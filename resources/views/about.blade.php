@@ -118,18 +118,10 @@
                         <div class="container">
                             <div class="row justify-content-center">
                                 <div class="col-lg-12 col-md-12 align-content-center">
-                                        <form>
-                                            <div class="form-row">
-                                                <div class="form-group col-md-8">
-                                                    <input type="text" class="form-control my-2 my-lg-1" id="inputtext4" placeholder="What are you looking for">
-                                                </div>
-                                                
-                                                
-                                                <div class="form-group col-md-2 align-self-center">
-                                                    <button type="submit" class="btn btn-primary">Search Now</button>
-                                                </div>
-                                            </div>
-                                        </form>
+                                        <h2 class="text-center">About Us</h2>
+                                        <p>
+                                            With an ever-growing demand for brand loyalty and repeat business, UPCC has done just that in large part due to keeping up with the times. Stocking the newest and more improved materials, to associating ourselves with the latest international standards, to being prevalent in its digital information and accessibility, we are a company of experience, instilled with youth and both immersed in dedication.
+                                        </p>
                                     </div>
                                 </div>
                     </div>
@@ -152,60 +144,8 @@
 @auth
 <section class="popular-deals section bg-gray">
     <div class="container">
-        <div class="row">
-            <div class="col-md-12">
-                <div class="section-title">
-                    <h2>Recommended Products</h2>
-                    
-                </div>
-            </div>
-        </div>
-        <div class="row">
-            <!-- offer 01 -->
-            <div class="col-lg-12">
-                <div class="trending-ads-slide">
-                     @foreach($recommended as $item)
-                    <div class="col-sm-12 col-lg-12">
-                        <!-- product card -->
-                        <div class="product-item bg-light">
-                            <div class="card">
-                                <div class="thumb-content">
-                                    <!-- <div class="price">$200</div> -->
-                                    <a href="single.html">
-                                        <img class="card-img-top img-fluid" src="{{URL::to('images/'.$item->image)}}" alt="Card image cap">
-                                    </a>
-                                </div>
-                                <div class="card-body">
-                                    <h4 class="card-title"><a href="single.html">{{$item->item_name}}</a></h4>
-                                    <ul class="list-inline product-meta">
-                                        
-                                        <li class="list-inline-item">
-                                            <a href="#"><i class="fa fa-calendar"></i>{{$item->created_at->toDayDateTimeString()}}</a>
-                                        </li>
-                                    </ul>
-                                    <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Explicabo, aliquam!</p>
-                                    <div class="card-footer p-4 pt-0 border-top-0 bg-transparent">
-                                        <div class="text-center"><a class="btn btn-outline-danger mt-auto" href="{{route('add_cart',$item->id)}}">Add Cart</a></div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-
-
-
-                    </div>
-
-                    @endforeach
-
-
-                    
-
-                    </div>
-                    
-                    
-                </div>
-            </div>
-            
+        
+      
             
         </div>
     </div>
@@ -214,59 +154,7 @@
 
 <section class="popular-deals section bg-gray">
     <div class="container">
-        <div class="row">
-            <div class="col-md-12">
-                <div class="section-title">
-                    <h2>New Products</h2>
-                    
-                </div>
-            </div>
-        </div>
-        <div class="row">
-            <!-- offer 01 -->
-            <div class="col-lg-12">
-                <div class="trending-ads-slide">
-                     @foreach($items as $item)
-                    <div class="col-sm-12 col-lg-12">
-                        <!-- product card -->
-                        <div class="product-item bg-light">
-                            <div class="card">
-                                <div class="thumb-content">
-                                    <!-- <div class="price">$200</div> -->
-                                    <a href="single.html">
-                                        <img class="card-img-top img-fluid" src="{{URL::to('images/'.$item->image)}}" alt="Card image cap">
-                                    </a>
-                                </div>
-                                <div class="card-body">
-                                    <h4 class="card-title"><a href="single.html">{{$item->item_name}}</a></h4>
-                                    <ul class="list-inline product-meta">
-                                        
-                                        <li class="list-inline-item">
-                                            <a href="#"><i class="fa fa-calendar"></i>{{$item->created_at->toDayDateTimeString()}}</a>
-                                        </li>
-                                    </ul>
-                                    <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Explicabo, aliquam!</p>
-                                    <div class="card-footer p-4 pt-0 border-top-0 bg-transparent">
-                                        <div class="text-center"><a class="btn btn-outline-danger mt-auto" href="{{route('add_cart',$item->id)}}">Add Cart</a></div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-
-
-
-                    </div>
-
-                    @endforeach
-
-
-                    
-
-                    </div>
-                    
-                    
-                </div>
-            </div>
+        
             
             
         </div>

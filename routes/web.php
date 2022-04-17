@@ -4,6 +4,9 @@
 Route::get('/','AuthController@home');
 
 Route::get('/login','AuthController@login');
+Route::get('/about', function(){
+    return view('about');
+});
 Route::post('/login_check','AuthController@login_check')->name('login_check');
 Route::get('/register','AuthController@register');
 Route::post('/register_check','AuthController@register_check')->name('register_check');
