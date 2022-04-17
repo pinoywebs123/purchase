@@ -187,7 +187,16 @@
                                     </ul>
                                     <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Explicabo, aliquam!</p>
                                     <div class="card-footer p-4 pt-0 border-top-0 bg-transparent">
-                                        <div class="text-center"><a class="btn btn-outline-danger mt-auto" href="{{route('add_cart',$item->id)}}">Add Cart</a></div>
+
+                                        <div class="text-center">
+                                            @auth
+                                                <a class="btn btn-outline-danger mt-auto" href="{{route('add_cart',$item->id)}}">Add Cart</a>
+                                            @else
+                                                <a class="btn btn-outline-danger mt-auto" href="{{url('login')}}">Login</a>
+                                            @end
+
+                                            
+                                        </div>
                                     </div>
                                 </div>
                             </div>
