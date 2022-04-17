@@ -108,8 +108,10 @@
             <div class="col-md-12">
                 <!-- Header Contetnt -->
                 <div class="content-block">
-                    <h1>Top Industrial Store</h1>
-                    <p>Join the millions who buy and sell from each other <br> everyday in local communities around the world</p>
+                    
+                    <p>
+                        UPCC has been at the forefront of the valve pipeline steel business in the Philippines. We carry a wide range of High Pressure Steam valves carbon steel, forged steel, SS 304(CF8)/316L(CF8M) body construction with pipe fittings/flanges and seamless pipes, Boiler tubes, and High Pressure Plates from Japan, Italy, Brazil, Germany, Korea, China, and the United States. We hold the distinction of being ranked as one of the regular vendor of some of the Philippines’ biggest companies from sectors in Oil Refinery, Petroleum, Geothermal, LNG, LPG, Power/Energy, Chemical, Sugar Mill, Food/Beverage, Distillery & International Sub contructors.
+                    </p>
                     
                     
                 </div>
