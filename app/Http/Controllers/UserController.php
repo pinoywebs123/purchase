@@ -26,8 +26,10 @@ class UserController extends Controller
     }
     public function items()
     {
+        $total_cart_order = Order::where('user_id', Auth::id())->where('status_id',1)->sum('total_price');
+
         $orders = Order::where('user_id', Auth::id())->with('item')->orderBy('id','desc')->get();
-        return view('user.items',compact('orders'));
+        return view('user.items',compact('orders','total_cart_order'));
     }
     public function message()
     {

@@ -14,7 +14,16 @@ class AuthController extends Controller
 {
     public function home()
     {
-        $items = Item::limit(6)->get();
+        if(isset($_GET['search']))
+        {
+            $search = trim($_GET['search']);
+
+            $items = Item::where('item_type','LIKE','%'.$search.'%')->get();
+        }else 
+        {
+            $items = Item::limit(6)->get();
+        }
+        
         if(Auth::check()){
             $cart = Order::where('user_id', Auth::id())->where('status_id',1)->count();
             $user_history_orders = Order::select('item_id')->where('user_id', Auth::id())->groupBy('item_id')->with('item')->get();

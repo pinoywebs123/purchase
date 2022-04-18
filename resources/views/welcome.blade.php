@@ -120,10 +120,11 @@
                         <div class="container">
                             <div class="row justify-content-center">
                                 <div class="col-lg-12 col-md-12 align-content-center">
-                                        <form>
+                                        <form method="GET">
+                                           
                                             <div class="form-row">
                                                 <div class="form-group col-md-8">
-                                                    <input type="text" class="form-control my-2 my-lg-1" id="inputtext4" placeholder="What are you looking for">
+                                                    <input type="text" class="form-control my-2 my-lg-1" id="inputtext4" placeholder="What are you looking for" name="search">
                                                 </div>
                                                 
                                                 
@@ -173,19 +174,17 @@
                             <div class="card">
                                 <div class="thumb-content">
                                     <!-- <div class="price">$200</div> -->
-                                    <a href="single.html">
-                                        <img class="card-img-top img-fluid" src="{{URL::to('images/'.$item->image)}}" alt="Card image cap">
-                                    </a>
+                                     <img class="card-img-top img-fluid" src="{{URL::to('images/'.$item->image)}}" alt="Card image cap">
                                 </div>
                                 <div class="card-body">
-                                    <h4 class="card-title"><a href="single.html">{{$item->item_name}}</a></h4>
+                                    <h4 class="card-title">{{$item->item_name}}</h4>
                                     <ul class="list-inline product-meta">
                                         
                                         <li class="list-inline-item">
                                             <a href="#"><i class="fa fa-calendar"></i>{{$item->created_at->toDayDateTimeString()}}</a>
                                         </li>
                                     </ul>
-                                    <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Explicabo, aliquam!</p>
+                                    
                                     <div class="card-footer p-4 pt-0 border-top-0 bg-transparent">
 
                                         <div class="text-center">
@@ -244,19 +243,17 @@
                             <div class="card">
                                 <div class="thumb-content">
                                     <!-- <div class="price">$200</div> -->
-                                    <a href="single.html">
-                                        <img class="card-img-top img-fluid" src="{{URL::to('images/'.$item->image)}}" alt="Card image cap">
-                                    </a>
+                                    <img class="card-img-top img-fluid" src="{{URL::to('images/'.$item->image)}}" alt="Card image cap">
                                 </div>
                                 <div class="card-body">
-                                    <h4 class="card-title"><a href="single.html">{{$item->item_name}}</a></h4>
+                                    <h4 class="card-title">{{$item->item_name}}</h4>
                                     <ul class="list-inline product-meta">
                                         
                                         <li class="list-inline-item">
                                             <a href="#"><i class="fa fa-calendar"></i>{{$item->created_at->toDayDateTimeString()}}</a>
                                         </li>
                                     </ul>
-                                    <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Explicabo, aliquam!</p>
+                                    
                                     <div class="card-footer p-4 pt-0 border-top-0 bg-transparent">
                                         <div class="text-center">
                                             @auth

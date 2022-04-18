@@ -73,7 +73,7 @@
                         <li class="nav-item dropdown no-arrow">
                             <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button"
                                 data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                <span class="mr-2 d-none d-lg-inline text-gray-600 small">Douglas McGee</span>
+                                <span class="mr-2 d-none d-lg-inline text-gray-600 small">{{Auth::user()->first_name}} {{Auth::user()->last_name}}</span>
                                 <img class="img-profile rounded-circle"
                                     src="{{URL::to('img/undraw_profile.svg')}}">
                             </a>
@@ -105,6 +105,7 @@
                     <div class="card shadow mb-4">
                         <div class="card-header py-3">
                             <h6 class="m-0 font-weight-bold text-primary">ORDER LIST</h6>
+                            <h3>Current Cart Order: P{{$total_cart_order}}</h3>
                         </div>
                         <div class="card-body">
                             <div class="table-responsive">
